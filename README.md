@@ -125,6 +125,6 @@ Apache License 2.0 - See LICENSE file for details
 
 ## References
 
-- [AMD GPU ISA Documentation](https://www.amd.com/en/support/technical/developer-resources)
+- [AMD GPU ISA Documentation](https://gpuopen.com/amd-gpu-architecture-programming-documentation/)
 - [AMDGPU LLVM Documentation](https://llvm.org/docs/AMDGPUUsage.html)
 
