@@ -1,9 +1,9 @@
 {
-  "name": "amdgcn-asm",
+  "name": "vscode-amdgcn-language-support",
   "displayName": "AMDGCN Assembly Language Support",
   "description": "Syntax highlighting for AMDGCN assembly language",
   "version": "0.1.0",
-  "publisher": "your-publisher-name",
+  "publisher": "Shilei Tian",
   "license": "Apache-2.0",
   "engines": {
     "vscode": "^1.75.0"
@@ -20,7 +20,7 @@
   ],
   "repository": {
     "type": "git",
-    "url": "https://github.com/your-username/vscode-amdgcn-lang-support"
+    "url": "https://github.com/shiltian/vscode-amdgcn-language-support"
   },
   "contributes": {
     "languages": [
