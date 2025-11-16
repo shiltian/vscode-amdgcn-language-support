@@ -1,0 +1,173 @@
+{
+  "$schema": "https://raw.githubusercontent.com/martinring/tmlanguage/master/tmlanguage.json",
+  "name": "AMDGCN Assembly",
+  "scopeName": "source.amdgcn-asm",
+  "patterns": [
+    { "include": "#comments" },
+    { "include": "#directives-with-symbols" },
+    { "include": "#directives" },
+    { "include": "#labels" },
+    { "include": "#instructions" },
+    { "include": "#registers" },
+    { "include": "#numbers" },
+    { "include": "#strings" }
+  ],
+  "repository": {
+    "comments": {
+      "patterns": [
+        {
+          "name": "comment.line.semicolon.amdgcn-asm",
+          "match": ";.*$"
+        },
+        {
+          "name": "comment.block.amdgcn-asm",
+          "begin": "/\\*",
+          "end": "\\*/"
+        }
+      ]
+    },
+    "directives-with-symbols": {
+      "patterns": [
+        {
+          "match": "^\\s*(\\.(?:globl|global))\\s+([a-zA-Z_][a-zA-Z0-9_]*)",
+          "captures": {
+            "1": { "name": "keyword.control.directive.amdgcn-asm" },
+            "2": { "name": "entity.name.function.global.amdgcn-asm" }
+          }
+        },
+        {
+          "match": "^\\s*(\\.(?:type|size))\\s+([a-zA-Z_\\.][a-zA-Z0-9_\\.]*)",
+          "captures": {
+            "1": { "name": "keyword.control.directive.amdgcn-asm" },
+            "2": { "name": "entity.name.symbol.amdgcn-asm" }
+          }
+        },
+        {
+          "match": "^\\s*(\\.set)\\s+([a-zA-Z_][a-zA-Z0-9_\\.]*)",
+          "captures": {
+            "1": { "name": "keyword.control.directive.amdgcn-asm" },
+            "2": { "name": "variable.other.constant.amdgcn-asm" }
+          }
+        }
+      ]
+    },
+    "directives": {
+      "patterns": [
+        {
+          "name": "keyword.control.directive.amdgcn-asm",
+          "match": "\\.(section|text|data|bss|globl|global|type|size|long|byte|word|quad|ascii|asciz|string|align|p2align|set|amd_amdgpu_isa|rodata|note)\\b"
+        },
+        {
+          "name": "keyword.control.amdgpu.amdgcn-asm",
+          "match": "\\.(AMDGPU|amdgpu)\\.[a-zA-Z_][a-zA-Z0-9_]*"
+        }
+      ]
+    },
+    "labels": {
+      "patterns": [
+        {
+          "name": "entity.name.label.local.amdgcn-asm",
+          "match": "^\\s*(\\.[a-zA-Z_][a-zA-Z0-9_\\.]*):",
+          "comment": "Local labels starting with a dot (e.g., .Lfunc_end0:)"
+        },
+        {
+          "name": "entity.name.function.amdgcn-asm",
+          "match": "^\\s*([a-zA-Z_][a-zA-Z0-9_]*):",
+          "comment": "Function labels (e.g., fmaak_fmamk:)"
+        }
+      ]
+    },
+    "instructions": {
+      "patterns": [
+        {
+          "name": "keyword.mnemonic.scalar.amdgcn-asm",
+          "match": "\\b(s_[a-z0-9_]+)\\b"
+        },
+        {
+          "name": "keyword.mnemonic.vector.amdgcn-asm",
+          "match": "\\b(v_[a-z0-9_]+)\\b"
+        },
+        {
+          "name": "keyword.mnemonic.flat.amdgcn-asm",
+          "match": "\\b(flat_[a-z0-9_]+|global_[a-z0-9_]+|scratch_[a-z0-9_]+)\\b"
+        },
+        {
+          "name": "keyword.mnemonic.ds.amdgcn-asm",
+          "match": "\\b(ds_[a-z0-9_]+)\\b"
+        },
+        {
+          "name": "keyword.mnemonic.buffer.amdgcn-asm",
+          "match": "\\b(buffer_[a-z0-9_]+|tbuffer_[a-z0-9_]+)\\b"
+        },
+        {
+          "name": "keyword.mnemonic.image.amdgcn-asm",
+          "match": "\\b(image_[a-z0-9_]+)\\b"
+        },
+        {
+          "name": "keyword.mnemonic.export.amdgcn-asm",
+          "match": "\\b(exp|exp_done)\\b"
+        }
+      ]
+    },
+    "registers": {
+      "patterns": [
+        {
+          "name": "variable.other.register.scalar.amdgcn-asm",
+          "match": "\\bs([0-9]+|gpr[0-9]+|\\[[0-9]+:[0-9]+\\])\\b"
+        },
+        {
+          "name": "variable.other.register.vector.amdgcn-asm",
+          "match": "\\bv([0-9]+|gpr[0-9]+|\\[[0-9]+:[0-9]+\\])\\b"
+        },
+        {
+          "name": "variable.other.register.agpr.amdgcn-asm",
+          "match": "\\ba([0-9]+|\\[[0-9]+:[0-9]+\\])\\b"
+        },
+        {
+          "name": "constant.language.register.special.amdgcn-asm",
+          "match": "\\b(vcc|vcc_lo|vcc_hi|exec|exec_lo|exec_hi|m0|tma|tma_lo|tma_hi|tba|tba_lo|tba_hi|flat_scratch|flat_scratch_lo|flat_scratch_hi|xnack_mask|xnack_mask_lo|xnack_mask_hi)\\b"
+        },
+        {
+          "name": "constant.language.register.ttmp.amdgcn-asm",
+          "match": "\\bttmp([0-9]+|\\[[0-9]+:[0-9]+\\])\\b"
+        }
+      ]
+    },
+    "numbers": {
+      "patterns": [
+        {
+          "name": "constant.numeric.hex.amdgcn-asm",
+          "match": "\\b0[xX][0-9a-fA-F]+\\b"
+        },
+        {
+          "name": "constant.numeric.binary.amdgcn-asm",
+          "match": "\\b0[bB][01]+\\b"
+        },
+        {
+          "name": "constant.numeric.octal.amdgcn-asm",
+          "match": "\\b0[0-7]+\\b"
+        },
+        {
+          "name": "constant.numeric.decimal.amdgcn-asm",
+          "match": "\\b[0-9]+\\b"
+        }
+      ]
+    },
+    "strings": {
+      "patterns": [
+        {
+          "name": "string.quoted.double.amdgcn-asm",
+          "begin": "\"",
+          "end": "\"",
+          "patterns": [
+            {
+              "name": "constant.character.escape.amdgcn-asm",
+              "match": "\\\\."
+            }
+          ]
+        }
+      ]
+    }
+  }
+}
+

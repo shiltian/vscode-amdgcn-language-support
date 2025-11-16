@@ -1,0 +1,53 @@
+{
+  "name": "amdgcn-asm",
+  "displayName": "AMDGCN Assembly Language Support",
+  "description": "Syntax highlighting for AMDGCN assembly language",
+  "version": "0.1.0",
+  "publisher": "your-publisher-name",
+  "license": "Apache-2.0",
+  "engines": {
+    "vscode": "^1.75.0"
+  },
+  "categories": [
+    "Programming Languages"
+  ],
+  "keywords": [
+    "amdgcn",
+    "assembly",
+    "amd",
+    "gpu",
+    "gcn"
+  ],
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/your-username/vscode-amdgcn-lang-support"
+  },
+  "contributes": {
+    "languages": [
+      {
+        "id": "amdgcn-asm",
+        "aliases": [
+          "AMDGCN Assembly",
+          "amdgcn"
+        ],
+        "extensions": [
+          ".s",
+          ".asm"
+        ],
+        "configuration": "./language-configuration.json"
+      }
+    ],
+    "grammars": [
+      {
+        "language": "amdgcn-asm",
+        "scopeName": "source.amdgcn-asm",
+        "path": "./syntaxes/amdgcn-asm.tmLanguage.json"
+      }
+    ]
+  },
+  "devDependencies": {
+    "@types/vscode": "^1.75.0",
+    "@types/node": "^18.0.0"
+  }
+}
+
