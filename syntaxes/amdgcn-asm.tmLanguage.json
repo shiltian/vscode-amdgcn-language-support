@@ -4,6 +4,7 @@
   "scopeName": "source.amdgcn-asm",
   "patterns": [
     { "include": "#comments" },
+    { "include": "#amdgpu-metadata" },
     { "include": "#directives-with-symbols" },
     { "include": "#directives" },
     { "include": "#labels" },
@@ -23,6 +24,24 @@
           "name": "comment.block.amdgcn-asm",
           "begin": "/\\*",
           "end": "\\*/"
+        }
+      ]
+    },
+    "amdgpu-metadata": {
+      "patterns": [
+        {
+          "name": "meta.embedded.block.amdgpu-metadata",
+          "begin": "^\\s*(\\.amdgpu_metadata)\\s*$",
+          "end": "^\\s*(\\.end_amdgpu_metadata)\\s*$",
+          "beginCaptures": {
+            "1": { "name": "keyword.control.directive.amdgcn-asm" }
+          },
+          "endCaptures": {
+            "1": { "name": "keyword.control.directive.amdgcn-asm" }
+          },
+          "patterns": [
+            { "include": "source.yaml" }
+          ]
         }
       ]
     },
@@ -54,11 +73,19 @@
     "directives": {
       "patterns": [
         {
-          "name": "keyword.control.directive.amdgcn-asm",
-          "match": "\\.(section|text|data|bss|globl|global|type|size|long|byte|word|quad|ascii|asciz|string|align|p2align|set|amd_amdgpu_isa|rodata|note)\\b"
+          "name": "entity.name.type.amdhsa.amdgcn-asm",
+          "match": "\\.(amdhsa_[a-zA-Z_][a-zA-Z0-9_]*|end_amdhsa_[a-zA-Z_][a-zA-Z0-9_]*)\\b"
         },
         {
-          "name": "keyword.control.amdgpu.amdgcn-asm",
+          "name": "entity.name.type.amdgcn.amdgcn-asm",
+          "match": "\\.(amdgcn_[a-zA-Z_][a-zA-Z0-9_]*)\\b"
+        },
+        {
+          "name": "keyword.control.directive.amdgcn-asm",
+          "match": "\\.(section|text|data|bss|globl|global|type|size|long|byte|word|quad|ascii|asciz|string|align|p2align|set|amd_amdgpu_isa|rodata|note|ident|addrsig|addrsig_sym)\\b"
+        },
+        {
+          "name": "support.type.amdgpu.amdgcn-asm",
           "match": "\\.(AMDGPU|amdgpu)\\.[a-zA-Z_][a-zA-Z0-9_]*"
         }
       ]
