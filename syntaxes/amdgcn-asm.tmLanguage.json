@@ -107,56 +107,68 @@
     "instructions": {
       "patterns": [
         {
-          "name": "keyword.mnemonic.scalar.amdgcn-asm",
-          "match": "\\b(s_[a-z0-9_]+)\\b"
+          "name": "support.function.scalar.amdgcn-asm",
+          "match": "\\b(s_[a-z0-9_]+)\\b",
+          "comment": "Scalar instructions (s_*) - typically yellow/gold in themes"
         },
         {
-          "name": "keyword.mnemonic.vector.amdgcn-asm",
-          "match": "\\b(v_[a-z0-9_]+)\\b"
+          "name": "entity.name.type.vector.amdgcn-asm",
+          "match": "\\b(v_[a-z0-9_]+)\\b",
+          "comment": "Vector instructions (v_*) - typically cyan/teal in themes"
         },
         {
-          "name": "keyword.mnemonic.flat.amdgcn-asm",
-          "match": "\\b(flat_[a-z0-9_]+|global_[a-z0-9_]+|scratch_[a-z0-9_]+)\\b"
+          "name": "keyword.control.flat.amdgcn-asm",
+          "match": "\\b(flat_[a-z0-9_]+|global_[a-z0-9_]+|scratch_[a-z0-9_]+)\\b",
+          "comment": "Flat/Global/Scratch instructions - typically purple/magenta in themes"
         },
         {
-          "name": "keyword.mnemonic.ds.amdgcn-asm",
-          "match": "\\b(ds_[a-z0-9_]+)\\b"
+          "name": "keyword.control.ds.amdgcn-asm",
+          "match": "\\b(ds_[a-z0-9_]+)\\b",
+          "comment": "Data share instructions - typically purple/magenta in themes"
         },
         {
-          "name": "keyword.mnemonic.buffer.amdgcn-asm",
-          "match": "\\b(buffer_[a-z0-9_]+|tbuffer_[a-z0-9_]+)\\b"
+          "name": "keyword.control.buffer.amdgcn-asm",
+          "match": "\\b(buffer_[a-z0-9_]+|tbuffer_[a-z0-9_]+)\\b",
+          "comment": "Buffer instructions - typically purple/magenta in themes"
         },
         {
-          "name": "keyword.mnemonic.image.amdgcn-asm",
-          "match": "\\b(image_[a-z0-9_]+)\\b"
+          "name": "keyword.control.image.amdgcn-asm",
+          "match": "\\b(image_[a-z0-9_]+)\\b",
+          "comment": "Image instructions - typically purple/magenta in themes"
         },
         {
-          "name": "keyword.mnemonic.export.amdgcn-asm",
-          "match": "\\b(exp|exp_done)\\b"
+          "name": "keyword.control.export.amdgcn-asm",
+          "match": "\\b(exp|exp_done)\\b",
+          "comment": "Export instructions - typically purple/magenta in themes"
         }
       ]
     },
     "registers": {
       "patterns": [
         {
-          "name": "variable.other.register.scalar.amdgcn-asm",
-          "match": "\\bs([0-9]+|gpr[0-9]+|\\[[0-9]+:[0-9]+\\])\\b"
+          "name": "storage.type.scalar.amdgcn-asm",
+          "match": "\\bs([0-9]+|gpr[0-9]+|\\[[0-9]+:[0-9]+\\])\\b",
+          "comment": "Scalar registers (s*) - typically blue/purple in themes"
         },
         {
-          "name": "variable.other.register.vector.amdgcn-asm",
-          "match": "\\bv([0-9]+|gpr[0-9]+|\\[[0-9]+:[0-9]+\\])\\b"
+          "name": "support.variable.vector.amdgcn-asm",
+          "match": "\\bv([0-9]+|gpr[0-9]+|\\[[0-9]+:[0-9]+\\])\\b",
+          "comment": "Vector registers (v*) - typically cyan/light blue in themes"
         },
         {
-          "name": "variable.other.register.agpr.amdgcn-asm",
-          "match": "\\ba([0-9]+|\\[[0-9]+:[0-9]+\\])\\b"
+          "name": "entity.other.attribute-name.agpr.amdgcn-asm",
+          "match": "\\ba([0-9]+|\\[[0-9]+:[0-9]+\\])\\b",
+          "comment": "Accumulator registers (a*) - typically yellow/light color in themes"
         },
         {
           "name": "constant.language.register.special.amdgcn-asm",
-          "match": "\\b(vcc|vcc_lo|vcc_hi|exec|exec_lo|exec_hi|m0|tma|tma_lo|tma_hi|tba|tba_lo|tba_hi|flat_scratch|flat_scratch_lo|flat_scratch_hi|xnack_mask|xnack_mask_lo|xnack_mask_hi)\\b"
+          "match": "\\b(vcc|vcc_lo|vcc_hi|exec|exec_lo|exec_hi|m0|tma|tma_lo|tma_hi|tba|tba_lo|tba_hi|flat_scratch|flat_scratch_lo|flat_scratch_hi|xnack_mask|xnack_mask_lo|xnack_mask_hi)\\b",
+          "comment": "Special registers - typically bold/constant color in themes"
         },
         {
-          "name": "constant.language.register.ttmp.amdgcn-asm",
-          "match": "\\bttmp([0-9]+|\\[[0-9]+:[0-9]+\\])\\b"
+          "name": "constant.numeric.register.ttmp.amdgcn-asm",
+          "match": "\\bttmp([0-9]+|\\[[0-9]+:[0-9]+\\])\\b",
+          "comment": "Trap handler registers - typically numeric constant color in themes"
         }
       ]
     },
