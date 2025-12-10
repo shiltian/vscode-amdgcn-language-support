@@ -1,130 +1,43 @@
 # AMDGCN Assembly Language Support
 
-Syntax highlighting support for AMDGCN (AMD GPU) assembly language in Visual Studio Code.
+Syntax highlighting for AMDGCN (AMD GPU) assembly in VS Code.
 
 ## Features
 
-- **Syntax Highlighting**: Comprehensive syntax highlighting for AMDGCN assembly files
-  - Scalar instructions (s_*)
-  - Vector instructions (v_*)
-  - Flat/Global/Scratch memory instructions
-  - DS (Data Share) instructions
-  - Buffer and image instructions
-  - Registers (scalar, vector, AGPR, special registers)
-  - Directives (.section, .globl, .set, etc.)
-  - Comments (line and block)
-  - Numbers (hex, binary, octal, decimal)
-  - Labels and functions
+- Syntax highlighting for all instruction types (scalar, vector, memory, DS, buffer, image)
+- Register highlighting (SGPR, VGPR, AGPR, special registers)
+- Assembler directives and AMDHSA kernel descriptors
+- Embedded YAML metadata blocks
+- Comments (`;`, `//`, `/* */`)
 
-- **Language Features**:
-  - Line comments with `;`
-  - Block comments with `/* */`
-  - Auto-closing pairs for brackets, quotes, and parentheses
-  - Code folding with region markers
+## Supported Extensions
 
-## Supported File Extensions
-
-- `.s` - Assembly source files
-- `.asm` - Assembly files
+- `.s`, `.asm`
 
 ## Installation
 
-### From VSIX
+**From VSIX:**
 1. Download the `.vsix` file
-2. Open VS Code
-3. Go to Extensions (Ctrl+Shift+X)
-4. Click on the "..." menu at the top right
-5. Select "Install from VSIX..."
-6. Choose the downloaded `.vsix` file
+2. In VS Code: Extensions → `...` menu → Install from VSIX
 
-### From Source
-1. Clone this repository
-2. Open the folder in VS Code
-3. Press F5 to open a new window with the extension loaded
-4. Test the extension by opening AMDGCN assembly files
-
-## Example
-
-The extension provides syntax highlighting for AMDGCN assembly code like:
-
-```asm
-.section	.AMDGPU.config,"",@progbits
-.text
-.globl	fmaak_fmamk
-.p2align	2
-.type	fmaak_fmamk,@function
-fmaak_fmamk:
-; %bb.0:
-	s_set_vgpr_msb 0x45
-	v_fmaak_f32 v0, v1, v2, 0x1
-	s_set_vgpr_msb 0x4505
-	v_fmaak_f32 v0, v1, v2, 0x1
-.Lfunc_end0:
-	.size	fmaak_fmamk, .Lfunc_end0-fmaak_fmamk
-	.set fmaak_fmamk.num_vgpr, 259
-```
-
-## Customization
-
-You can customize the colors of different syntax elements by modifying your VS Code settings. The extension uses standard TextMate scopes:
-
-- `keyword.mnemonic.scalar.amdgcn-asm` - Scalar instructions
-- `keyword.mnemonic.vector.amdgcn-asm` - Vector instructions
-- `variable.other.register.scalar.amdgcn-asm` - Scalar registers
-- `variable.other.register.vector.amdgcn-asm` - Vector registers
-- `comment.line.semicolon.amdgcn-asm` - Comments
-- And more...
-
-Example customization in `settings.json`:
-
-```json
-{
-  "editor.tokenColorCustomizations": {
-    "textMateRules": [
-      {
-        "scope": "keyword.mnemonic.vector.amdgcn-asm",
-        "settings": {
-          "foreground": "#569CD6",
-          "fontStyle": "bold"
-        }
-      }
-    ]
-  }
-}
-```
-
-## Development
-
-### Prerequisites
-- Node.js (v16 or later)
-- VS Code (v1.75.0 or later)
-
-### Building
+**From Source:**
 ```bash
-npm install
+git clone https://github.com/shiltian/vscode-amdgcn-language-support
+cd vscode-amdgcn-language-support
+# Press F5 in VS Code to test
 ```
 
-### Testing
-Press F5 in VS Code to open a new window with the extension loaded.
-
-### Packaging
+**Packaging:**
 ```bash
 npm install -g @vscode/vsce
 vsce package
 ```
 
-This will create a `.vsix` file that can be installed in VS Code.
-
-## Contributing
-
-Contributions are welcome! Please feel free to submit issues or pull requests.
-
 ## License
 
-Apache License 2.0 - See LICENSE file for details
+Apache-2.0
 
 ## References
 
 - [AMD GPU ISA Documentation](https://gpuopen.com/amd-gpu-architecture-programming-documentation/)
 - [AMDGPU LLVM Documentation](https://llvm.org/docs/AMDGPUUsage.html)
-
