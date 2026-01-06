@@ -2,9 +2,13 @@
   "name": "vscode-amdgcn-language-support",
   "displayName": "AMDGCN Assembly Language Support",
   "description": "Syntax highlighting for AMDGCN assembly language",
-  "version": "0.1.0",
-  "publisher": "Shilei Tian",
+  "version": "0.2.0",
+  "publisher": "shiltian",
   "license": "Apache-2.0",
+  "main": "./extension.js",
+  "activationEvents": [
+    "onLanguage:amdgcn-asm"
+  ],
   "engines": {
     "vscode": "^1.75.0"
   },
@@ -50,4 +54,3 @@
     "@types/node": "^18.0.0"
   }
 }
-

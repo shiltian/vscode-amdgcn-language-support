@@ -14,6 +14,26 @@ Syntax highlighting for AMDGCN (AMD GPU) assembly in VS Code.
 
 - `.s`, `.asm`
 
+## Customizing label color
+
+If your current theme does not make labels (e.g. `label_common_kernel_entry:`) stand out, you can force a vivid color via `editor.tokenColorCustomizations`:
+
+```json
+{
+  "editor.tokenColorCustomizations": {
+    "textMateRules": [
+      {
+        "scope": "entity.name.label.amdgcn-asm",
+        "settings": {
+          "foreground": "#ff1744",
+          "fontStyle": "bold"
+        }
+      }
+    ]
+  }
+}
+```
+
 ## Installation
 
 **From VSIX:**
